@@ -1,4 +1,4 @@
-const { string, bool } = require('./index');
+const { string, bool, func } = require('./index');
 
 describe('string', () => {
   it('should return true if param is string', () => {
@@ -29,5 +29,21 @@ describe('bool', () => {
   })
   it('should throw if param is not provided', () => {
     expect(() => bool()).toThrow();
+  })
+})
+
+describe('func', () => {
+  it('should return true if param is func', () => {
+    expect(func(() => {})).toBe(true);
+  })
+  it('should return false if param is not func', () => {
+    expect(func(1)).toBe(false);
+    expect(func('aaa')).toBe(false);
+    expect(func(false)).toBe(false);
+    expect(func({})).toBe(false);
+    expect(func([1, 2])).toBe(false);
+  })
+  it('should throw if param is not provided', () => {
+    expect(() => func()).toThrow();
   })
 })
