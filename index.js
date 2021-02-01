@@ -11,6 +11,8 @@ const obj = schema => p => {
     return isValid;
   });
 }
+const or = (...params) => v => params.some(func => func(v));
+const and = (...params) => v => params.every(func => func(v));
 
 module.exports = {
   string,
@@ -20,4 +22,6 @@ module.exports = {
   num,
   arr,
   date,
+  or,
+  and,
 }

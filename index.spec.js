@@ -1,4 +1,4 @@
-const { string, bool, func, num, obj, arr, date } = require('./index');
+const { string, bool, func, num, obj, arr, date, and, or } = require('./index');
 
 describe('string', () => {
   it('should return true if param is string', () => {
@@ -97,5 +97,26 @@ describe('date', () => {
     expect(date(3)).toBe(false);
     expect(date({})).toBe(false);
     expect(date([])).toBe(false);
+  })
+})
+
+const f = () => false;
+const t = () => true;
+
+describe('and', () => {
+  it('should return true if param is all true', () => {
+    expect(and(t, t, t)()).toBe(true);
+  })
+  it('should return false if param is has false', () => {
+    expect(and(t, f, t)()).toBe(false);
+  })
+})
+
+describe('or', () => {
+  it('should return true if param has true', () => {
+    expect(or(f, f, t)()).toBe(true);
+  })
+  it('should return false if param has no true value', () => {
+    expect(or(f, f, f)()).toBe(false);
   })
 })
